@@ -12,7 +12,9 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/SwipeManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$USER_HOME$/Downloads/SwipeTest.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../ShortcutRun/Assets/Scripts/PlayerMovement.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$USER_HOME$/Downloads/SwipeController.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -64,7 +66,10 @@
       <updated>1626079535777</updated>
       <workItem from="1626079541513" duration="4885000" />
       <workItem from="1626091055720" duration="7051000" />
-      <workItem from="1626113172268" duration="6995000" />
+      <workItem from="1626113172268" duration="7293000" />
+      <workItem from="1626167685131" duration="4559000" />
+      <workItem from="1626180221992" duration="7000000" />
+      <workItem from="1626244771411" duration="6593000" />
     </task>
     <servers />
   </component>

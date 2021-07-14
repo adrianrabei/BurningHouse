@@ -6,111 +6,66 @@ using DG.Tweening;
 
 public class Player : MonoBehaviour
 {
-    //[SerializeField] private SwipeManager swipeManager;
-    //[SerializeField] private List<Transform> positions;
-    private Transform player;
-    
+    [SerializeField] private int speed;
+    [SerializeField] private int lineDistance;
+
     private Vector3 movePosition;
-    private bool isLeft, isRight, isCenter;
-    private int index;
-    private CharacterController characterController;
+    private Vector3 direction;
+    private int line;
+    private bool isActive;
+
     void Start()
     {
-        characterController = GetComponent<CharacterController>();
-        index = 2;
-        player = transform;
+        line = 1;
+        isActive = true;
     }
 
     void FixedUpdate()
     {
-        float rotationSpeed = Input.GetAxis("Mouse X") * 3f;
-        
-        player.transform.Translate(Vector3.forward * 10f * Time.deltaTime);
-
-        if (Input.GetMouseButton(0))
+        if (isActive)
         {
-            player.transform.RotateAround(player.transform.position, Vector3.back, rotationSpeed);
+            transform.position += Vector3.up * (Time.deltaTime * speed);
         }
-
-        //ChangePosition();
     }
 
-    /*private void ChangePosition()
+    private void Update()
     {
-        if (swipeManager.SwipeLeft)
+        ChangePosition();
+    }
+
+    private void ChangePosition()
+    {
+        if (SwipeManager.swipeRight)
         {
-            if (index != positions.IndexOf(positions[0]))
+            if (isActive)
             {
-                print("Left");
-                index--;
+                if (line < 2)
+                {
+                    transform.position += new Vector3(lineDistance, 0, 0);
+                    line++;
+                }
             }
         } 
-        else if (swipeManager.SwipeRight)
-        {
-            if (index != positions.IndexOf(positions[positions.Count - 1]))
-            {
-                print("Right");
-                index++;
-            }
-        }
         
-        characterController.transform.DOMove(positions[index].transform.position, 0.2f);
-        player.transform.DOMove(positions[index].transform.position, 0.2f);
-
-        /*if (swipeManager.SwipeLeft)
+        if (SwipeManager.swipeLeft)
         {
-            if (isRight)
+            if (isActive)
             {
-                movePosition += Vector3.left * 3f;
-                isCenter = true;
-                isRight = isLeft = false;
-                print("center");
-            }
-            else if (isCenter)
-            {
-                movePosition += Vector3.left  * 3f;
-                isLeft = true;
-                isRight = isCenter = false;
-                print("left");
+                if (line > 0)
+                {
+                    transform.position += new Vector3(-lineDistance, 0, 0);
+                    line--;
+                }
             }
         }
-        if (swipeManager.SwipeRight)
-        {
-            if (isCenter)
-            {
-                movePosition += Vector3.right * 3f;
-                isRight = true;
-                isLeft = isCenter = false;
-                print("right");
-            }
-            else if (isLeft)
-            {
-                movePosition += Vector3.right * 3f;
-                isCenter = true;
-                isLeft = isRight = false;
-                print("center");
-            }
-        }
+    }
 
-        /*if (transform.position == centralPosition)
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.CompareTag("Obstacle"))
         {
-            isCenter = true;
-            isLeft = isRight = false;
+            isActive = false;
+            print("Game Over");
         }
-        if (swipeManager.SwipeUp)
-        {
-            movePosition += Vector3.forward;
-        }*/
-
-        //transform.position = Vector3.MoveTowards(transform.position, movePosition, 5f * Time.deltaTime);
-        //print(index);
-
-        private void OnCollisionEnter(Collision other)
-        {
-            if (other.gameObject.CompareTag("Obstacle"))
-            {
-                Time.timeScale = 0;
-                print("Game over");
-            }
-        }
+    }
 }
