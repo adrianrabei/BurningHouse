@@ -12,17 +12,16 @@ public class Player : MonoBehaviour
     private Vector3 movePosition;
     private Vector3 direction;
     private int line;
-    private bool isActive;
+    public bool IsActive { get; set; }
 
     void Start()
     {
         line = 1;
-        isActive = true;
     }
 
     void FixedUpdate()
     {
-        if (isActive)
+        if (IsActive)
         {
             transform.position += Vector3.up * (Time.deltaTime * speed);
         }
@@ -37,7 +36,7 @@ public class Player : MonoBehaviour
     {
         if (SwipeManager.swipeRight)
         {
-            if (isActive)
+            if (IsActive)
             {
                 if (line < 2)
                 {
@@ -49,7 +48,7 @@ public class Player : MonoBehaviour
         
         if (SwipeManager.swipeLeft)
         {
-            if (isActive)
+            if (IsActive)
             {
                 if (line > 0)
                 {
@@ -64,7 +63,7 @@ public class Player : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Obstacle"))
         {
-            isActive = false;
+            IsActive = false;
             print("Game Over");
         }
     }
