@@ -11,11 +11,6 @@ public class UIManager : MonoBehaviour
     [SerializeField] private RectTransform win;
     [SerializeField] private RectTransform lose;
 
-    private void Start()
-    {
-        
-    }
-
     private void Update()
     {
         if (GameManager.Instance.IsPlay)

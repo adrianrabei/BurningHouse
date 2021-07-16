@@ -8,11 +8,15 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private int speed;
     [SerializeField] private int lineDistance;
+    [SerializeField] private Transform jumpPoint;
 
     private Vector3 movePosition;
     private Vector3 direction;
     private int line;
+    private bool isOnPosition;
     public bool IsActive { get; set; }
+
+    public bool IsOnPosition => isOnPosition;
 
     void Start()
     {
@@ -23,6 +27,13 @@ public class Player : MonoBehaviour
     {
         if (IsActive)
         {
+            if (!IsOnPosition)
+            {
+                transform.DOMove(jumpPoint.position, 0.5f);
+                transform.rotation = Quaternion.Euler(-90, 0, 90);
+                isOnPosition = true;
+            }
+            
             transform.position += Vector3.up * (Time.deltaTime * speed);
         }
     }
