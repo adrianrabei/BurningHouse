@@ -27,7 +27,7 @@ public class Player : MonoBehaviour
     {
         if (IsActive)
         {
-            if (!IsOnPosition)
+            if (IsOnPosition != true)
             {
                 transform.DOMove(jumpPoint.position, 0.5f);
                 transform.rotation = Quaternion.Euler(-90, 0, 90);
@@ -75,7 +75,6 @@ public class Player : MonoBehaviour
         if (other.gameObject.CompareTag("Obstacle"))
         {
             IsActive = false;
-            print("Game Over");
         }
     }
 }

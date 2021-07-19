@@ -21,8 +21,7 @@ public class UIManager : MonoBehaviour
 
     private void GoGame()
     {
+        main.DOAnchorPos(new Vector2(1080, 0), 0.5f);
         game.gameObject.SetActive(true);
-        main.gameObject.SetActive(false);
-        main.DOAnchorPos(new Vector2(1080, 0), 1);
     }
 }

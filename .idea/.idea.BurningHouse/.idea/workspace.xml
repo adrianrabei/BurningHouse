@@ -22,8 +22,8 @@
       <list>
         <option value="$PROJECT_DIR$/Assets/Scripts/SwipeManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Player.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UIManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Player.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/CameraController.cs" />
       </list>
     </option>
@@ -77,6 +77,8 @@
       <workItem from="1626344924539" duration="2284000" />
       <workItem from="1626355772832" duration="5031000" />
       <workItem from="1626387596353" duration="4910000" />
+      <workItem from="1626599576580" duration="868000" />
+      <workItem from="1626688291143" duration="2562000" />
     </task>
     <servers />
   </component>
