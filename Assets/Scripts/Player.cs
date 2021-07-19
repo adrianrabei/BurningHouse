@@ -9,18 +9,26 @@ public class Player : MonoBehaviour
     [SerializeField] private int speed;
     [SerializeField] private int lineDistance;
     [SerializeField] private Transform jumpPoint;
+    [SerializeField] private Transform finishPoint;
+    [SerializeField] private int waterCount = 0;
+    [SerializeField] private SliderController sliderController;
 
     private Vector3 movePosition;
     private Vector3 direction;
     private int line;
     private bool isOnPosition;
+    private Vector3 initialRotation;
+    private bool isOnFinish;
     public bool IsActive { get; set; }
 
     public bool IsOnPosition => isOnPosition;
 
+    public bool IsOnFinish => isOnFinish;
+
     void Start()
     {
         line = 1;
+        initialRotation = transform.rotation.eulerAngles;
     }
 
     void FixedUpdate()
@@ -83,8 +91,27 @@ public class Player : MonoBehaviour
     {
         if (other.CompareTag("Building"))
         {
-            IsActive = false;
-            GameManager.Instance.Win();
+            if (IsActive)
+            {
+                isOnFinish = true;
+                transform.DOJump(finishPoint.position, 5f, 1, 0.5f);
+                transform.rotation = Quaternion.Euler(initialRotation);
+                StartCoroutine(OnFinish());
+            }
         }
+
+        if (other.CompareTag("Water"))
+        {
+            Destroy(other.gameObject);
+            waterCount++;
+            sliderController.Increment(1);
+        }
+    }
+
+    private IEnumerator OnFinish()
+    {
+        yield return new WaitForSeconds(0.3f);
+        IsActive = false;
+        GameManager.Instance.Win();
     }
 }

@@ -9,6 +9,7 @@ public class CameraController : MonoBehaviour
     private Player player;
     private Vector3 offset;
     private Vector3 rotation;
+    private Vector3 initialRotation;
     private bool finalizedRotation;
     private bool startFollowing;
 
@@ -16,6 +17,7 @@ public class CameraController : MonoBehaviour
     {
         player = FindObjectOfType<Player>();
         offset = new Vector3(0, -5, -12);
+        initialRotation = transform.rotation.eulerAngles;
         rotation = new Vector3(-50, 0, 0);
     }
 
@@ -37,6 +39,15 @@ public class CameraController : MonoBehaviour
                     StartCoroutine(StopRotation());
                 }
             }
+        }
+
+        if (player.IsOnFinish)
+        {
+            Vector3 position = transform.position;
+            position.y = (player.transform.position + new Vector3(0, 0, -12)).y;
+            transform.position = position;
+            
+            transform.DORotate(initialRotation, 1f);
         }
     }
 

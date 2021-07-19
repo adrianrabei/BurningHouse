@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Obstacle
   - Building
+  - Water
   layers:
   - Default
   - TransparentFX
