@@ -75,6 +75,16 @@ public class Player : MonoBehaviour
         if (other.gameObject.CompareTag("Obstacle"))
         {
             IsActive = false;
+            GameManager.Instance.Lose();
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Building"))
+        {
+            IsActive = false;
+            GameManager.Instance.Win();
         }
     }
 }
